@@ -31,20 +31,16 @@ export class App extends Component {
   
    return <div  style={{
     height: '100vh',
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: 40,
     color: '#010101'
   }}>
-     <FeedbackOptions/>
      <FeedbackOptions options={good} 
     // onLeaveFeedback={}
      ></FeedbackOptions>
      <Statistics good={good} neutral={neutral} bad={bad} total={this.total} positivePercentage={this.positivePercentage}/>
-     
-
-     <span>Total: {this.countTotalFeedback} </span>
+      <span>Total: {this.countTotalFeedback} </span>
    </div>;
   }
 }

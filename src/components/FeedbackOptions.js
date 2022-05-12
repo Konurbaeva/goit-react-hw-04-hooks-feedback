@@ -1,9 +1,11 @@
 function FeedbackOptions({ options }) {
+
+    // const { options } = this.props;
+    console.log('================================OPTIONS: ' + options)
     return (
         <>Please leave feedback
-            <button>Good: {options.good}</button>
-            <button>Neutral: {options.neutral}</button>
-            <button>Bad: {options.bad}</button>
+            {this.props.options.map(({ good, neutral, bad }) =>
+                (<button type="button">Good: {good}</button>))}
         </>
     );
 }
