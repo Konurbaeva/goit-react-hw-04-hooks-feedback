@@ -36,7 +36,8 @@ export class App extends Component {
     fontSize: 40,
     color: '#010101'
   }}>
-     <FeedbackOptions options={good} 
+     <FeedbackOptions good={good}
+     // options={good} 
     // onLeaveFeedback={}
      ></FeedbackOptions>
      <Statistics good={good} neutral={neutral} bad={bad} total={this.total} positivePercentage={this.positivePercentage}/>
