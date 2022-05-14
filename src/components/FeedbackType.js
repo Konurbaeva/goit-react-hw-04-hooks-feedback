@@ -1,4 +1,4 @@
-function FeedbackOptions(props) {
+function FeedbackType(props) {
 
     // const { options } = this.props;
 
@@ -17,4 +17,4 @@ function FeedbackOptions(props) {
     );
 }
 
-export default FeedbackOptions;
+export default FeedbackType;
