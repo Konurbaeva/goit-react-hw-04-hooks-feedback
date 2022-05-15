@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
 
 function FeedbackOptions({ onGoodChange, onNeutralChange, onBadChange }) {
     return (
@@ -10,6 +12,13 @@ function FeedbackOptions({ onGoodChange, onNeutralChange, onBadChange }) {
         </>
     );
 }
+
+FeedbackOptions.propTypes = {
+    onGoodChange: PropTypes.func,
+    onNeutralChange: PropTypes.func,
+    onBadChange: PropTypes.func,
+};
+
 
 
 const Button = styled.button`
