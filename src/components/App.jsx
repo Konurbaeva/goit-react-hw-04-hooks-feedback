@@ -1,6 +1,6 @@
 import {Component} from "react";
 import styled from 'styled-components';
-// import Statistics from './Statistics';
+import Statistics from './Statistics';
 // import FeedbackType from './FeedbackType';
 
 export class App extends Component {
@@ -46,6 +46,7 @@ export class App extends Component {
      render() {
        const {good, neutral, bad} = this.state;
        const total = this.countTotalFeedback();
+       const positivePercentage = this.countPositiveFeedbackPercentage(total, good)
       return <div style={{
         height: '100vh',
         justifyContent: 'center',
@@ -59,11 +60,16 @@ export class App extends Component {
         onClick={this.onGoodChange}>Good</Button>
         <Button type="button"  value="neutral" name="neutral" onClick={this.onNeutralChange}>Neutral</Button>
         <Button type="button"  value="bad"  name="bad"onClick={this.onBadChange}>Bad</Button>
-         <div>Good: {good}</div>
+         {/* <div>Good: {good}</div>
          <div>Neutral:{neutral}</div>
          <div>Bad: {bad}</div>
           <span>Total:{total} </span>
-          <div>Positive feedback: {this.countPositiveFeedbackPercentage(total, good)} %</div>
+          <div>Positive feedback: {this.countPositiveFeedbackPercentage(total, good)} %</div> */}
+          <Statistics good={good}
+           neutral={neutral} 
+           bad={bad} total={total}
+           positivePercentage={positivePercentage}/>
+
        </div>
      }
   }
