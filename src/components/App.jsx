@@ -53,7 +53,7 @@ export class App extends Component {
         height: '100vh',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: 40,
+        fontSize: 25,
         color: '#010101'
       }}>
         <Section title="Statistics">
