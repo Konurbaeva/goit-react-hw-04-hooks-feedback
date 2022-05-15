@@ -1,6 +1,5 @@
 import {Component} from "react";
-import styled from 'styled-components';
-// import Statistics from './Statistics';
+import Statistics from './Statistics';
 import FeedbackOptions from './FeedbackOptions';
 
 export class App extends Component {
@@ -58,12 +57,14 @@ export class App extends Component {
          onNeutralChange={this.onNeutralChange} 
          onBadChange={this.onBadChange} 
         />
+        <Statistics good={good} neutral={neutral} bad={bad} total={total}
+         positivePercentage={this.countPositiveFeedbackPercentage(total, good)}/>
       
-         <div>Good: {good}</div>
+         {/* <div>Good: {good}</div>
          <div>Neutral:{neutral}</div>
          <div>Bad: {bad}</div>
           <span>Total:{total} </span>
-          <div>Positive feedback: {this.countPositiveFeedbackPercentage(total, good)} %</div>
+          <div>Positive feedback: {this.countPositiveFeedbackPercentage(total, good)} %</div> */}
        </div>
      }
   }
