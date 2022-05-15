@@ -1,47 +1,59 @@
-import { Component } from 'react';
+import {Component} from "react";
 import styled from 'styled-components';
 // import Statistics from './Statistics';
 // import FeedbackType from './FeedbackType';
 
-export class App extends Component{
-
+export class App extends Component {
   state = {
-    good: 10,
-    neutral: 20,
-    bad: 5,
+    good: 0,
+    neutral: 0,
+    bad: 0,
   }
 
-  onChange = (e, type) => {
+  onGoodChange = e => {
     this.setState(prevState => {
      console.log(prevState);
-     return { type: prevState[type] + 1 };
+     return { good: prevState.good + 1 };
    });
   }
 
-  render() {
-    const {good, neutral, bad} = this.state
-  
-   return <div style={{
-    height: '100vh',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: 40,
-    color: '#010101'
-  }}>
-
-    <div>Please, leave feedback</div>
-    <Button type="button"  value="good" name="good" 
-    onClick={this.onChange}>Good</Button>
-    <Button type="button"  value="neutral" name="neutral" onClick={this.onChange}>Neutral</Button>
-    <Button type="button"  value="bad"  name="bad" onClick={this.onChange}>Bad</Button>
-     <div>Good: {good}</div>
-     <div>Neutral:{neutral}</div>
-     <div>Bad: {bad}</div>
-      {/* <span>Total: {this.countTotalFeedback} </span> */}
-      <div>Positive feedback:  %</div>
-   </div>
+   onNeutralChange = e => {
+    this.setState(prevState => {
+     console.log(prevState);
+     return { neutral: prevState.neutral + 1 };
+   });
   }
-}
+
+   onBadChange = e => {
+    this.setState(prevState => {
+     console.log(prevState);
+     return { bad: prevState.bad + 1 };
+   });
+  }
+
+     render() {
+       const {good, neutral, bad} = this.state;
+      return <div style={{
+        height: '100vh',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: 40,
+        color: '#010101'
+      }}>
+    
+        <div>Please, leave feedback</div>
+        <Button type="button"  value="good" name="good" 
+        onClick={this.onGoodChange}>Good</Button>
+        <Button type="button"  value="neutral" name="neutral" onClick={this.onNeutralChange}>Neutral</Button>
+        <Button type="button"  value="bad"  name="bad"onClick={this.onBadChange}>Bad</Button>
+         <div>Good: {good}</div>
+         <div>Neutral:{neutral}</div>
+         <div>Bad: {bad}</div>
+          {/* <span>Total: {this.countTotalFeedback} </span> */}
+          <div>Positive feedback:  %</div>
+       </div>
+     }
+  }
 
 
 const Button = styled.button`
