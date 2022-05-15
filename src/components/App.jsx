@@ -31,6 +31,12 @@ export class App extends Component {
    });
   }
 
+  countTotalFeedback = () => {
+    const {good, neutral, bad} = this.state;
+    let total = good + neutral + bad
+    return total
+  }
+  
      render() {
        const {good, neutral, bad} = this.state;
       return <div style={{
@@ -49,7 +55,7 @@ export class App extends Component {
          <div>Good: {good}</div>
          <div>Neutral:{neutral}</div>
          <div>Bad: {bad}</div>
-          {/* <span>Total: {this.countTotalFeedback} </span> */}
+          <span>Total:{this.countTotalFeedback()} </span>
           <div>Positive feedback:  %</div>
        </div>
      }
