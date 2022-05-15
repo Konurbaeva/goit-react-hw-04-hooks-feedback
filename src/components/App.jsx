@@ -50,7 +50,6 @@ export class App extends Component {
        const total = this.countTotalFeedback();
 
       return <div style={{
-        height: '100vh',
         justifyContent: 'center',
         alignItems: 'center',
         fontSize: 25,
