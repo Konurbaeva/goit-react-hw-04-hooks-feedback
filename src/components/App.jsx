@@ -36,9 +36,16 @@ export class App extends Component {
     let total = good + neutral + bad
     return total
   }
+
+  countPositiveFeedbackPercentage = (total, good) => {
+   if(total){
+    return good * 100 / total;
+   }
+  }
   
      render() {
        const {good, neutral, bad} = this.state;
+       const total = this.countTotalFeedback();
       return <div style={{
         height: '100vh',
         justifyContent: 'center',
@@ -55,8 +62,8 @@ export class App extends Component {
          <div>Good: {good}</div>
          <div>Neutral:{neutral}</div>
          <div>Bad: {bad}</div>
-          <span>Total:{this.countTotalFeedback()} </span>
-          <div>Positive feedback:  %</div>
+          <span>Total:{total} </span>
+          <div>Positive feedback: {this.countPositiveFeedbackPercentage(total, good)} %</div>
        </div>
      }
   }
