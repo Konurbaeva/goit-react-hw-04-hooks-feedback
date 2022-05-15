@@ -1,7 +1,7 @@
 import {Component} from "react";
 import styled from 'styled-components';
-import Statistics from './Statistics';
-// import FeedbackType from './FeedbackType';
+// import Statistics from './Statistics';
+import FeedbackOptions from './FeedbackOptions';
 
 export class App extends Component {
   state = {
@@ -46,7 +46,6 @@ export class App extends Component {
      render() {
        const {good, neutral, bad} = this.state;
        const total = this.countTotalFeedback();
-       const positivePercentage = this.countPositiveFeedbackPercentage(total, good)
       return <div style={{
         height: '100vh',
         justifyContent: 'center',
@@ -54,33 +53,17 @@ export class App extends Component {
         fontSize: 40,
         color: '#010101'
       }}>
-    
-        <div>Please, leave feedback</div>
-        <Button type="button"  value="good" name="good" 
-        onClick={this.onGoodChange}>Good</Button>
-        <Button type="button"  value="neutral" name="neutral" onClick={this.onNeutralChange}>Neutral</Button>
-        <Button type="button"  value="bad"  name="bad"onClick={this.onBadChange}>Bad</Button>
-         {/* <div>Good: {good}</div>
+        <FeedbackOptions
+         onGoodChange={this.onGoodChange} 
+         onNeutralChange={this.onNeutralChange} 
+         onBadChange={this.onBadChange} 
+        />
+      
+         <div>Good: {good}</div>
          <div>Neutral:{neutral}</div>
          <div>Bad: {bad}</div>
           <span>Total:{total} </span>
-          <div>Positive feedback: {this.countPositiveFeedbackPercentage(total, good)} %</div> */}
-          <Statistics good={good}
-           neutral={neutral} 
-           bad={bad} total={total}
-           positivePercentage={positivePercentage}/>
-
+          <div>Positive feedback: {this.countPositiveFeedbackPercentage(total, good)} %</div>
        </div>
      }
   }
-
-
-const Button = styled.button`
-  background: ${props => props.primary ? "palevioletred" : "white"};
-  color: ${props => props.primary ? "white" : "palevioletred"};
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 3px;
-`;
