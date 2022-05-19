@@ -9,29 +9,11 @@ export class App extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
- 
   }
 
-  onGoodChange = e => {
-    this.setState(prevState => {
-     console.log(prevState);
-     return { good: prevState.good + 1 };
-   });
-  }
-
-   onNeutralChange = e => {
-    this.setState(prevState => {
-     console.log(prevState);
-     return { neutral: prevState.neutral + 1 };
-   });
-  }
-
-   onBadChange = e => {
-    this.setState(prevState => {
-     console.log(prevState);
-     return { bad: prevState.bad + 1 };
-   });
-  }
+  onLeaveFeedback = option => {
+    return this.setState({ [option]: this.state[option] + 1 });
+};
 
   countTotalFeedback = () => {
     const {good, neutral, bad} = this.state;
@@ -48,7 +30,9 @@ export class App extends Component {
      render() {
        const {good, neutral, bad} = this.state;
        const total = this.countTotalFeedback();
+       const options = Object.keys(this.state)
 
+  
       return <div style={{
         justifyContent: 'center',
         alignItems: 'center',
@@ -57,9 +41,8 @@ export class App extends Component {
       }}>
         <Section title="Statistics">
         <FeedbackOptions
-         onGoodChange={this.onGoodChange} 
-         onNeutralChange={this.onNeutralChange} 
-         onBadChange={this.onBadChange} 
+        options={options}
+        onLeaveFeedback={this.onLeaveFeedback}
         />
      {total ? (
             <Statistics

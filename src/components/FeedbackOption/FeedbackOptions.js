@@ -2,24 +2,26 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 
-function FeedbackOptions({ onGoodChange, onNeutralChange, onBadChange }) {
+function FeedbackOptions({ options, onLeaveFeedback }) {
     return (
-        <>Please leave feedback
-            <Button type="button" value="good" name="good"
-                onClick={onGoodChange}>Good</Button>
-            <Button type="button" value="neutral" name="neutral" onClick={onNeutralChange}>Neutral</Button>
-            <Button type="button" value="bad" name="bad" onClick={onBadChange}>Bad</Button>
-        </>
+        <div>
+            {options.map(option => (
+                <Button
+                    key={option}
+                    type="button"
+                    onClick={() => onLeaveFeedback(option)}>
+                    {option}
+                </Button>
+            ))
+            }
+        </div>
     );
 }
 
 FeedbackOptions.propTypes = {
-    onGoodChange: PropTypes.func,
-    onNeutralChange: PropTypes.func,
-    onBadChange: PropTypes.func,
-};
-
-
+    options: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onLeaveFeedback: PropTypes.func.isRequired,
+}
 
 const Button = styled.button`
   background: ${props => props.primary ? "palevioletred" : "white"};
