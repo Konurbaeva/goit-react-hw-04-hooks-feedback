@@ -9,7 +9,7 @@ function Notification({ message }) {
 }
 
 Notification.propTypes = {
-    title: PropTypes.string,
+    message: PropTypes.string.isRequired,
 };
 
 
