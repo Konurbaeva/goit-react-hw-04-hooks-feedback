@@ -39,11 +39,14 @@ export class App extends Component {
         fontSize: 25,
         color: '#010101'
       }}>
-        <Section title="Statistics">
+        <Section title="Please leave Feedback">
         <FeedbackOptions
         options={options}
         onLeaveFeedback={this.onLeaveFeedback}
         />
+        </Section>
+
+      <Section title="Statistics"> 
      {total ? (
             <Statistics
               good={good}
