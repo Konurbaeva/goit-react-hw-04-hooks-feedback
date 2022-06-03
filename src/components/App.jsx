@@ -11,19 +11,12 @@ export function App() {
     bad: 0,
   })
 
-//   const onLeaveFeedback = option => {
-//     return setState({ [option]: state[option] + 1 });
-// };
-
 const onLeaveFeedback = (option) => {
   return setState(prevState => ({ ...prevState, [option]: state[option] + 1 }));
 };
 
   const countTotalFeedback = () => {
     const {good, neutral, bad} = state;
-    console.log('good: ', good);
-    console.log('neutral: ', neutral);
-    console.log('bad: ', bad);
 
     let total = good + neutral + bad
     return total
