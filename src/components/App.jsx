@@ -5,20 +5,33 @@ import Section from './Section';
 import Notification from './Notification';
 
 export function App() {
-  const [state, setState] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  })
+
+const [goodFeedback, setGoodFeedback] = useState(0);
+const [neutralFeedback, setNeutralFeedback] = useState(0);
+const [badFeedback, setBadFeedback] = useState(0);
+
+// const onLeaveFeedback = (option) => {
+//   return setState(prevState => ({ ...prevState, [option]: state[option] + 1 }));
+// };
+
 
 const onLeaveFeedback = (option) => {
-  return setState(prevState => ({ ...prevState, [option]: state[option] + 1 }));
+  setGoodFeedback(prevState => ({ ...prevState, goodFeedback: goodFeedback + 1 }))
+  setNeutralFeedback(prevState => ({ ...prevState, neutralFeedback: neutralFeedback + 1 }))
+  setBadFeedback(prevState => ({ ...prevState, neutralFeedback: badFeedback + 1 }))
 };
 
-  const countTotalFeedback = () => {
-    const {good, neutral, bad} = state;
 
-    let total = good + neutral + bad
+  // const countTotalFeedback = () => {
+  //   const {good, neutral, bad} = state;
+
+  //   let total = good + neutral + bad
+  //   return total
+  // }
+
+  const countTotalFeedback = () => {
+
+    let total = goodFeedback + neutralFeedback + badFeedback
     return total
   }
 
@@ -27,13 +40,13 @@ const onLeaveFeedback = (option) => {
     return good * 100 / total;
    }
   }
-  
+      //  const {good, neutral, bad} = state;
+      //  const total = countTotalFeedback();
+      //  const options = Object.keys(state)
 
-       const {good, neutral, bad} = state;
-       const total = countTotalFeedback();
-       const options = Object.keys(state)
+      const total = countTotalFeedback();
+      const options = Object.keys({ goodFeedback, neutralFeedback, badFeedback });
 
-  
       return <div style={{
         justifyContent: 'center',
         alignItems: 'center',
@@ -50,11 +63,11 @@ const onLeaveFeedback = (option) => {
       <Section title="Statistics"> 
      {total ? (
             <Statistics
-              good={good}
-              neutral={neutral}
-              bad={bad}
+              good={goodFeedback}
+              neutral={neutralFeedback}
+              bad={badFeedback}
               total={total}
-              positivePercentage={countPositiveFeedbackPercentage(total, good)}
+              positivePercentage={countPositiveFeedbackPercentage(total, goodFeedback)}
             />
           ) : (
             <Notification message="There is no feedback"/>
