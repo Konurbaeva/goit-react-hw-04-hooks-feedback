@@ -5,47 +5,45 @@ import Section from './Section';
 import Notification from './Notification';
 
 export function App() {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
-const [goodFeedback, setGoodFeedback] = useState(0);
-const [neutralFeedback, setNeutralFeedback] = useState(0);
-const [badFeedback, setBadFeedback] = useState(0);
+const onLeaveFeedback = options => {
+  switch (options) {
+      case 'good':
+          setGood(good + 1);
+          break;
+      case 'neutral':
+          setNeutral(neutral + 1);
+          break;
+      case 'bad':
+          setBad(bad + 1);
+          break;
 
-// const onLeaveFeedback = (option) => {
-//   return setState(prevState => ({ ...prevState, [option]: state[option] + 1 }));
-// };
-
-
-const onLeaveFeedback = (option) => {
-  setGoodFeedback(prevState => ({ ...prevState, goodFeedback: goodFeedback + 1 }))
-  setNeutralFeedback(prevState => ({ ...prevState, neutralFeedback: neutralFeedback + 1 }))
-  setBadFeedback(prevState => ({ ...prevState, neutralFeedback: badFeedback + 1 }))
+      default:
+          break;
+  }
 };
 
 
-  // const countTotalFeedback = () => {
-  //   const {good, neutral, bad} = state;
-
-  //   let total = good + neutral + bad
-  //   return total
-  // }
-
   const countTotalFeedback = () => {
-
-    let total = goodFeedback + neutralFeedback + badFeedback
+    let total = good + neutral + bad
     return total
   }
 
   const countPositiveFeedbackPercentage = (total, good) => {
    if(total){
-    return good * 100 / total;
+    return good* 100 / total;
    }
   }
-      //  const {good, neutral, bad} = state;
-      //  const total = countTotalFeedback();
-      //  const options = Object.keys(state)
-
+   
       const total = countTotalFeedback();
-      const options = Object.keys({ goodFeedback, neutralFeedback, badFeedback });
+      const options = { good, neutral, bad };
+
+      const converter= options => {
+        return Object.keys(options);
+    };
 
       return <div style={{
         justifyContent: 'center',
@@ -55,7 +53,7 @@ const onLeaveFeedback = (option) => {
       }}>
         <Section title="Please leave Feedback">
         <FeedbackOptions
-        options={options}
+        options={converter(options)}
         onLeaveFeedback={onLeaveFeedback}
         />
         </Section>
@@ -63,11 +61,11 @@ const onLeaveFeedback = (option) => {
       <Section title="Statistics"> 
      {total ? (
             <Statistics
-              good={goodFeedback}
-              neutral={neutralFeedback}
-              bad={badFeedback}
+              good={good}
+              neutral={neutral}
+              bad={bad}
               total={total}
-              positivePercentage={countPositiveFeedbackPercentage(total, goodFeedback)}
+              positivePercentage={countPositiveFeedbackPercentage(total, good)}
             />
           ) : (
             <Notification message="There is no feedback"/>
